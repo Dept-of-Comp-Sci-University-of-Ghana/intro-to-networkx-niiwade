@@ -1,0 +1,23 @@
+{
+  "num_nodes": 5,
+  "num_edges": 10,
+  "density": 1.0,
+  "degree_distribution": {
+    "4": 5
+  },
+  "average_degree": 4.0,
+  "median_degree": 4.0,
+  "isolated_nodes": [],
+  "is_connected": true,
+  "num_components": 1,
+  "clustering_coefficient": 1.0,
+  "members": [
+    "Joseph Nii Lante Lamptey",
+    "Isaac Frimpong Asante",
+    "Abigail The Obeng-Asamoah",
+    "Raphael Anaafi",
+    "Godfred Kwabena Lumor"
+  ],
+  "diameter": 1,
+  "avg_shortest_path": 1.0
+}
