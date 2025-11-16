@@ -25,6 +25,7 @@ for name, role in members.items():
     G.add_node(name, role=role)
 
 # Add edges representing collaboration relationships
+# Creating a realistic collaboration network
 collaborations = [
     # Team lead connections with all members (as project coordinator)
     ('Joseph Nii Lante Lamptey', 'Isaac Frimpong Asante', 'project collaboration'),
@@ -39,7 +40,6 @@ collaborations = [
     
     ('Abigail The Obeng-Asamoah', 'Godfred Kwabena Lumor', 'peer collaboration'),
     ('Abigail The Obeng-Asamoah', 'Raphael Anaafi', 'peer collaboration'),
-    
     
     ('Raphael Anaafi', 'Godfred Kwabena Lumor', 'peer collaboration'),
 ]
@@ -233,8 +233,38 @@ plt.savefig('research_network_visualization.png',
             facecolor='white')
 print(f"\n✓ Main visualization saved: research_network_visualization.png")
 
+# Create degree distribution plot - Individual connections only
+fig2 = plt.figure(figsize=(10, 6))
 
+# Bar chart of individual members
+members_list = [m for m, _ in sorted_degrees]
+degrees_list_sorted = [d for _, d in sorted_degrees]
+colors = ['#FF6B6B' if G.nodes[m]['role'] == 'Team Lead' else '#4ECDC4' 
+          for m in members_list]
 
+# Use shorter labels for readability
+short_labels = []
+for m in members_list:
+    if 'Lamptey' in m:
+        short_labels.append('Lamptey (Lead)')
+    else:
+        short_labels.append(m.split()[-1])
+
+plt.barh(range(len(members_list)), degrees_list_sorted, 
+         color=colors, edgecolor='black', linewidth=1.5, alpha=0.8)
+plt.yticks(range(len(members_list)), short_labels, fontsize=11)
+plt.xlabel('Number of Connections', fontsize=13, fontweight='bold')
+plt.ylabel('Team Member', fontsize=13, fontweight='bold')
+plt.title('Individual Member Connection Counts', fontsize=15, fontweight='bold')
+plt.grid(True, alpha=0.3, axis='x', linestyle='--')
+plt.gca().invert_yaxis()
+
+plt.tight_layout()
+plt.savefig('degree_distribution.png', 
+            dpi=300, 
+            bbox_inches='tight',
+            facecolor='white')
+print(f"✓ Degree distribution plot saved: degree_distribution.png")
 
 # Create a more detailed network with edge labels
 fig3 = plt.figure(figsize=(16, 12))
